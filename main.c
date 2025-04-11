@@ -186,7 +186,7 @@ int main() {
         printf("3. Mostrar tickets pendientes\n");
         printf("4. Procesar siguiente ticket\n");
         printf("5. Salir\n");
-        printf("Seleccione una opción: ");
+        printf("Seleccione una opcion: ");
         scanf("%hu", &opcion);
 
         switch (opcion) {
@@ -200,7 +200,7 @@ int main() {
                         printf("El ID ya existe. Ingrese otro ID: ");
                     }
                 }
-                printf("Ingrese la descripción del problema: ");
+                printf("Ingrese la descripcion del problema: ");
                 scanf("%s", descripcion);
                 registrarTicket(listaBaja, id, descripcion);
                 printf("Ticket registrado con ID: %d\n", id);
@@ -218,7 +218,7 @@ int main() {
                 do {
                     scanf("%d", &nuevaPrioridad);
                     if (nuevaPrioridad < 1 || nuevaPrioridad > 3) {
-                        printf("Prioridad no válida. Ingrese nuevamente (1 para baja, 2 para media, 3 para alta): ");
+                        printf("Prioridad no valida. Ingrese nuevamente (1 para baja, 2 para media, 3 para alta): ");
                     }
                 } while (nuevaPrioridad < 1 || nuevaPrioridad > 3);
                 
@@ -240,10 +240,11 @@ int main() {
                 free(listaAlta);
                 return EXIT_SUCCESS;
             default:
-                printf("Opción no válida.\n");
+                printf("Opcion no valida.\n");
                 break;
         }
     } while (opcion != 5);
 
     return EXIT_SUCCESS;
 }
+
