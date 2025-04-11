@@ -90,23 +90,23 @@ void asignarPrioridad(List* baja, List* medio, List* alto, int id, unsigned shor
         origen = alto;
     }
 
-    if (!ticket) printf("El ticket no existe.\n"); return;
+    if (!ticket) {
+        printf("El ticket no existe.\n"); 
+        return;
+    }
 
     eliminarTicketPorID(origen, id);
 
-    if (ticket) {
-        if (nuevaPrioridad == 1) {
-            pushBack(baja, ticket);
-            ticket->prioridad = 1;
-        } 
-        else if (nuevaPrioridad == 2) {
-            pushBack(medio, ticket);
-            ticket->prioridad = 2;
-        }
-        else {
-            pushBack(alto, ticket);
-            ticket->prioridad = 3;
-        }
+    ticket->prioridad = nuevaPrioridad;
+
+    if (nuevaPrioridad == 1) {
+        pushBack(baja, ticket);
+    } 
+    else if (nuevaPrioridad == 2) {
+        pushBack(medio, ticket);
+    }
+    else {
+        pushBack(alto, ticket);
     }
 }
 
@@ -185,27 +185,34 @@ int main() {
         printf("2. Asignar nueva prioridad a ticket\n");
         printf("3. Mostrar tickets pendientes\n");
         printf("4. Procesar siguiente ticket\n");
-        printf("5. Salir\n");
+        printf("5. Buscar ticket por ID\n");
+        printf("6. Salir\n");
         printf("Seleccione una opcion: ");
         scanf("%hu", &opcion);
 
         switch (opcion) {
             case 1:
+                system("cls||clear");
                 printf("Ingrese el ID del ticket: ");
-                while (1) {
+                do {
                     scanf("%d", &id);
+                    getchar(); 
                     if (buscarTicketPorID(listaBaja, id) == NULL && buscarTicketPorID(listaMedia, id) == NULL && buscarTicketPorID(listaAlta, id) == NULL) {
                         break;
                     } else {
                         printf("El ID ya existe. Ingrese otro ID: ");
                     }
-                }
+                } while (1);
                 printf("Ingrese la descripcion del problema: ");
-                scanf("%s", descripcion);
+                getchar(); 
+                fgets(descripcion, sizeof(descripcion), stdin);
+                descripcion[strcspn(descripcion, "\n")] = 0;
                 registrarTicket(listaBaja, id, descripcion);
                 printf("Ticket registrado con ID: %d\n", id);
+                system("cls||clear");
                 break;
             case 2:
+                system("cls||clear");
                 printf("Ingrese el ID del ticket a modificar: ");
                 do {
                     scanf("%d", &id);
@@ -224,27 +231,46 @@ int main() {
                 
                 asignarPrioridad(listaBaja, listaMedia, listaAlta, id, nuevaPrioridad);
                 printf("Prioridad del ticket %d actualizada correctamente.\n", id);
+                getchar();
                 break;
             case 3:
+                system("cls||clear");
                 printf("Mostrar Tickets pendientes:\n");
                 mostrarTicketsPendientes(listaBaja, listaMedia, listaAlta);
                 break;
             case 4:
-                printf("Procesar siguiente ticket:\n");
+                system("cls||clear");
+                printf("Procesando siguiente ticket:\n");
                 procesarSgteTicket(listaBaja, listaMedia, listaAlta);
                 break;
             case 5:
+                system("cls||clear");
+                printf("Buscar ticket por ID:\n");
+                printf("Ingrese el ID del ticket: ");
+                do {
+                    scanf("%d", &id);
+                    if (buscarTicketPorID(listaBaja, id) == NULL && buscarTicketPorID(listaMedia, id) == NULL && buscarTicketPorID(listaAlta, id) == NULL) {
+                        printf("El ID no existe. Ingrese otro ID: ");
+                    }
+                } while (buscarTicketPorID(listaBaja, id) == NULL && buscarTicketPorID(listaMedia, id) == NULL && buscarTicketPorID(listaAlta, id) == NULL);
+                
+                buscarTicketPorIDyDetalles(listaBaja, id);
+                break;
+            case 6:
                 printf("Saliendo del programa...\n");
                 free(listaBaja);
                 free(listaMedia);
                 free(listaAlta);
                 return EXIT_SUCCESS;
             default:
+                system("cls||clear");
                 printf("Opcion no valida.\n");
+                getchar();
                 break;
         }
-    } while (opcion != 5);
+    } while (opcion != 6);
 
     return EXIT_SUCCESS;
 }
+
 
