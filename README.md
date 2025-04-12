@@ -12,6 +12,7 @@ conveniente.
 # Como ejecutar el programa
 En el GitHub estan adjuntos tanto el archivo **main.c** como **a.exe**, el cual es el ejecutable, unicamente hace falta descargar el archivo **a.exe** y ejecutarlo para acceder al programa.
 https://github.com/LoivalF/Tarea-1/blob/main/a.exe  es el link al archivo a descargar.
+Al momento de intentar abrir el programa, mostrara un aviso de que este archivo es desconocido y por su seguridad no se ha abierto. Para abrirlo, en ese mismo aviso saldra un apartado que dira "Mas informacion" donde al clickear, dara la opcion a abrir el programa para continuar con su uso
 
 # Requisitos previos
 Trabaja desde la terminal, por lo que no existen prerrequisitos mas que abrir el archivo, el cual abre la terminal con el programa listo para su uso.
