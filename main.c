@@ -293,9 +293,15 @@ int main() {
                     break;
                 }
                 
-                buscarTicketPorIDyDetalles(listaBaja, id);
-                buscarTicketPorIDyDetalles(listaMedia, id);
-                buscarTicketPorIDyDetalles(listaAlta, id);
+                if (buscarTicketPorID(listaBaja, id) != NULL){
+                    buscarTicketPorIDyDetalles(listaBaja, id);
+                }
+                else if (buscarTicketPorID(listaMedia, id) != NULL){
+                    buscarTicketPorIDyDetalles(listaMedia, id);
+                }
+                else if (buscarTicketPorID(listaAlta, id) != NULL){
+                    buscarTicketPorIDyDetalles(listaAlta, id);
+                }
                 break;
             case 6:
                 printf("Saliendo del programa...\n");
@@ -313,6 +319,3 @@ int main() {
 
     return EXIT_SUCCESS;
 }
-
-
-
